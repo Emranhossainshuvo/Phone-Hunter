@@ -10,7 +10,7 @@ const displayPhones = phones => {
     phones.forEach(phone => {
         console.log(phone)
         const phoneCard = document.createElement('div');
-        phoneCard.classList = `card w-3/4 bg-gray-200 shadow-xl`;
+        phoneCard.classList = `card p-4 bg-gray-200 shadow-xl`;
         phoneCard.innerHTML = `
                     <figure class="px-1 pt-5">
                         <img src="${phone.image}" alt="Shoes" class="rounded-xl" />
@@ -26,5 +26,12 @@ const displayPhones = phones => {
         phoneContainer.appendChild(phoneCard);
     });
 }
+
+// search button handle
+
+const handleSearch = () => {
+    console.log('hi')
+}
+
 
 loadPhone();
