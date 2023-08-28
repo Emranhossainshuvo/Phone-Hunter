@@ -15,15 +15,28 @@
         <h1 class="text-7xl text-center mt-5 font-bold">Hunting Phone</h1>
     </header>
     <main>
+        <!-- search input and button  -->
         <section class="bg-gray-100 mt-8">
-            <input type="text" placeholder="Search..." class="input input-ghost w-full max-w-xs" />
+            <input id="input-field" type="text" placeholder="Search..." class="input input-ghost w-full max-w-xs" />
             <button onclick="handleSearch()" class="btn btn-active ms-4 btn-ghost">Search</button>
         </section>
+
+        
         <section>
+            <!-- spinner -->
+            <div id="loading-spinner" class="text-center items-center my-40 hidden">
+                <span class="loading loading-spinner w-9 loading-md"></span>
+            </div>
+            <!-- search result -->
             <div id="phone-container" class="lg:grid md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-7">
 
             </div>
         </section>
+
+        <!-- show all button -->
+        <div id="show-all-container" class="text-center mt-8 hidden">
+            <button onclick="handleShowAll()" class="btn btn-neutral">Show all</button>
+        </div>
     </main>
     <!-- js -->
     <script src="js/phone.js"></script>
