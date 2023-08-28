@@ -37,7 +37,15 @@ const displayPhones = (phones, isShowAll) => {
         </div>
         `
         phoneContainer.appendChild(phoneCard);
+        // if(phoneContainer = )
     });
+    // if result couldn's found
+    const resultErrorMessage = document.getElementById('result-not-found');
+    if(phoneContainer.childNodes.length === 0){
+        resultErrorMessage.classList.remove('hidden')
+    }else{
+        resultErrorMessage.classList.add('hidden')
+    }
     toggleLoadingSpinner(false)
 }
 
@@ -79,9 +87,9 @@ const showPhoneDetails = (phone) => {
 
 // search button handle
 
+const inputField = document.getElementById('input-field');
 const handleSearch = (isShowAll) => {
     toggleLoadingSpinner(true);
-    const inputField = document.getElementById('input-field');
     const inputText = inputField.value;
     loadPhone(inputText, isShowAll);
     inputField.value = '';
