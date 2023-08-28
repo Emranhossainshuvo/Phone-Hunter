@@ -32,8 +32,7 @@ const displayPhones = (phones, isShowAll) => {
         <h2 class="card-title">${phone.phone_name}</h2>
         <p></p>
         <div class="card-actions">
-        <button onclick="handleShowDetail('${phone.slug}'); 
-        show_details_modal.showModal()" class="btn btn-primary mt-3">Show details</button>
+        <button onclick="handleShowDetail('${phone.slug}')" class="btn btn-primary mt-3">Show details</button>
         </div>
         </div>
         `
@@ -44,12 +43,40 @@ const displayPhones = (phones, isShowAll) => {
 
 // show detail modal
 const handleShowDetail = async (id) => {
-    console.log('clicked', id)
+    // console.log('clicked', id)
     // load single data 
    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
    const data = await res.json();
+   const phone = data.data;
+   showPhoneDetails(phone)
+//    console.log(data.data)
+}
+
+// show phone details function
+
+const showPhoneDetails = (phone) => {
+    console.log(phone)
+    // show the mordal
+    // const phoneName = document.getElementById('show-detail-phone-name');
+    // phoneName.innerText = phone.name
+    const showDetailContainer = document.getElementById('show-detail-container');
+    showDetailContainer.innerHTML = `
+    <img src="${phone.image}" alt="" />
+    <h3>${phone.name}</h3>
+    <h2>Storage: ${phone.mainFeatures.storage}</h2>
+    <p>Display size: ${phone.mainFeatures.displaySize}</p>
+    <p>Chipset: ${phone.mainFeatures.chipSet}</p>
+    <p>Memory: ${phone.mainFeatures.memory}</p>
+    <p>Release Date: ${phone.releaseDate}</p>
+    <p>Brand: ${phone.brand}</p>
+    <p>GPS: ${phone.others.GPS}</p>
+    `
+    show_details_modal.showModal()
 
 }
+
+
+
 // search button handle
 
 const handleSearch = (isShowAll) => {
