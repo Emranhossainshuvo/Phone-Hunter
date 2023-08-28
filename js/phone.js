@@ -9,14 +9,15 @@ const displayPhones = (phones, isShowAll) => {
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.textContent = '';
     const showAllButoon = document.getElementById('show-all-container');
-    if(phones.length > 12){
+
+    if(phones.length > 12 && !isShowAll){
         showAllButoon.classList.remove('hidden')
     }else{
         showAllButoon.classList.add('hidden')
     }
-    console.log(isShowAll)
+    // console.log(isShowAll)
     if(!isShowAll){
-        phones = phones.slice(0, 12)
+        phones = phones.slice(0,12)
     }
 
     phones.forEach(phone => {
@@ -29,9 +30,10 @@ const displayPhones = (phones, isShowAll) => {
         </figure>
         <div class="card-body items-center text-center">
         <h2 class="card-title">${phone.phone_name}</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
+        <p></p>
         <div class="card-actions">
-        <button class="btn btn-primary">Buy Now</button>
+        <button onclick="handleShowDetail('${phone.slug}'); 
+        show_details_modal.showModal()" class="btn btn-primary mt-3">Show details</button>
         </div>
         </div>
         `
@@ -40,6 +42,14 @@ const displayPhones = (phones, isShowAll) => {
     toggleLoadingSpinner(false)
 }
 
+// show detail modal
+const handleShowDetail = async (id) => {
+    console.log('clicked', id)
+    // load single data 
+   const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
+   const data = await res.json();
+
+}
 // search button handle
 
 const handleSearch = (isShowAll) => {
