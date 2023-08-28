@@ -63,7 +63,7 @@ const handleShowDetail = async (id) => {
 // show phone details function
 
 const showPhoneDetails = (phone) => {
-    console.log(phone)
+    // console.log(phone)
     // show the mordal
     // const phoneName = document.getElementById('show-detail-phone-name');
     // phoneName.innerText = phone.name
@@ -77,7 +77,7 @@ const showPhoneDetails = (phone) => {
     <p>Memory: ${phone.mainFeatures.memory}</p>
     <p>Release Date: ${phone.releaseDate}</p>
     <p>Brand: ${phone.brand}</p>
-    <p>GPS: ${phone.others.GPS}</p>
+    <p>GPS: ${phone?.others?.GPS || 'No GPS data available'}</p>
     `
     show_details_modal.showModal()
 
@@ -89,6 +89,10 @@ const showPhoneDetails = (phone) => {
 
 const inputField = document.getElementById('input-field');
 const handleSearch = (isShowAll) => {
+    if(inputField.value == null || inputField.value == ''){
+        alert ('Please write something in the field');
+        return;
+    }
     toggleLoadingSpinner(true);
     const inputText = inputField.value;
     loadPhone(inputText, isShowAll);
